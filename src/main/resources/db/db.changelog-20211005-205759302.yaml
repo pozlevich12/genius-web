@@ -1,0 +1,108 @@
+databaseChangeLog:
+- changeSet:
+    id: 1633472948345-1
+    author: vase4kin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: userPK
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: auth_provider
+            type: VARCHAR(255)
+        - column:
+            name: avatar_url
+            type: VARCHAR(255)
+        - column:
+            name: email
+            type: VARCHAR(255)
+        - column:
+            name: first_visit
+            type: datetime
+        - column:
+            name: language
+            type: VARCHAR(255)
+        - column:
+            name: last_visit
+            type: datetime
+        - column:
+            name: locked
+            type: BIT
+        - column:
+            constraints:
+              nullable: false
+            name: provider_id
+            type: VARCHAR(255)
+        - column:
+            name: style
+            type: VARCHAR(255)
+        - column:
+            name: username
+            type: VARCHAR(255)
+        tableName: user
+- changeSet:
+    id: 1633472948345-2
+    author: vase4kin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+            name: user_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+            name: role_id
+            type: BIGINT
+        tableName: user_role
+- changeSet:
+    id: 1633472948345-3
+    author: vase4kin (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: auth_provider, provider_id
+        constraintName: compositeIndex
+        tableName: user
+- changeSet:
+    id: 1633472948345-4
+    author: vase4kin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: user_role
+        constraintName: FK859n2jvi8ivhui0rl0esws6o
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: user
+        validate: true
+- changeSet:
+    id: 1633472948345-5
+    author: vase4kin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: role_id
+        baseTableName: user_role
+        constraintName: FKa68196081fvovjhkek5m97n3y
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: role
+        validate: true
+
+databaseChangeLog: []
+
+databaseChangeLog: []
+

@@ -1,0 +1,71 @@
+databaseChangeLog:
+- changeSet:
+    id: 1632854383050-4
+    author: vase4kin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+            name: user_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+            name: role_id
+            type: BIGINT
+        tableName: user_role
+- changeSet:
+    id: 1632854383050-5
+    author: vase4kin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: user_role
+        constraintName: FK859n2jvi8ivhui0rl0esws6o
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: user
+        validate: true
+- changeSet:
+    id: 1632854383050-6
+    author: vase4kin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: role_id
+        baseTableName: user_role
+        constraintName: FKa68196081fvovjhkek5m97n3y
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: role
+        validate: true
+- changeSet:
+    id: 1632854383050-1
+    author: vase4kin (generated)
+    changes:
+    - dropNotNullConstraint:
+        columnDataType: varchar(255)
+        columnName: name
+        tableName: role
+- changeSet:
+    id: 1632854383050-2
+    author: vase4kin (generated)
+    changes:
+    - dropNotNullConstraint:
+        columnDataType: boolean
+        columnName: non_locked
+        tableName: user
+- changeSet:
+    id: 1632854383050-3
+    author: vase4kin (generated)
+    changes:
+    - dropNotNullConstraint:
+        columnDataType: varchar(255)
+        columnName: user_name
+        tableName: user
+

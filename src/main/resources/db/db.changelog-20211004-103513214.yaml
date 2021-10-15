@@ -1,0 +1,48 @@
+databaseChangeLog:
+- changeSet:
+    id: 1633343723656-1
+    author: vase4kin (generated)
+    changes:
+    - dropForeignKeyConstraint:
+        baseTableName: user_role
+        constraintName: FK859n2jvi8ivhui0rl0esws6o
+- changeSet:
+    id: 1633343723656-2
+    author: vase4kin (generated)
+    changes:
+    - dropForeignKeyConstraint:
+        baseTableName: user_role
+        constraintName: FKa68196081fvovjhkek5m97n3y
+- changeSet:
+    id: 1633343723656-3
+    author: vase4kin (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: email
+        tableName: user
+- changeSet:
+    id: 1633343723656-4
+    author: vase4kin (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: name
+        tableName: role
+- changeSet:
+    id: 1633343723656-5
+    author: vase4kin (generated)
+    changes:
+    - dropTable:
+        tableName: role
+- changeSet:
+    id: 1633343723656-6
+    author: vase4kin (generated)
+    changes:
+    - dropTable:
+        tableName: user
+- changeSet:
+    id: 1633343723656-7
+    author: vase4kin (generated)
+    changes:
+    - dropTable:
+        tableName: user_role
+

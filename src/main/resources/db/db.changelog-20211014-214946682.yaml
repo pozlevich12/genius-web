@@ -1,0 +1,9 @@
+databaseChangeLog:
+- changeSet:
+    id: 1634248201577-1
+    author: vase4kin (generated)
+    changes:
+    - dropColumn:
+        columnName: locked
+        tableName: user
+

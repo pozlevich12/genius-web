@@ -1,0 +1,130 @@
+databaseChangeLog:
+  - logicalFilePath: db/db.changelog-master.yaml
+  - changeSet:
+      id: 1
+      author: vase4kin
+      changes:
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(512)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(50)
+                  constraints:
+                    unique: true
+              - column:
+                  name: social_network
+                  type: varchar(20)
+              - column:
+                  name: key_social_network
+                  type: varchar(512)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: avatar_url
+                  type: varchar(512)
+              - column:
+                  name: non_locked
+                  type: boolean   
+                    
+  - changeSet:
+      id: 2
+      author: vase4kin
+      changes:
+      - addNotNullConstraint:
+          catalogName: tasks_project  
+          columnDataType: varchar(50)  
+          columnName: email  
+          defaultNullValue: A String  
+          schemaName: public  
+          tableName: user  
+          validate: true
+  - changeSet:
+      id: 3
+      author: vase4kin
+      changes:
+      -  dropColumn:  
+          catalogName: tasks_project  
+          columns:  
+          -  column:  
+              name: social_network  
+          -  column:  
+              name: key_social_network  
+          schemaName: public  
+          tableName: user
+  - changeSet:
+      id: 4
+      author: vase4kin
+      changes:
+      -  createTable:  
+          catalogName: tasks_project  
+          columns:  
+          -  column:  
+              name: id  
+              type: BIGINT
+              autoIncrement: true
+              constraints:
+                primaryKey: true
+                nullable: false
+          -  column:
+              name: name
+              type: varchar(50)
+              constraints:
+                unique: true
+                nullable: false
+          schemaName: public  
+          tableName: role  
+          tablespace: tasks_project
+  - changeSet:
+      id: 5
+      author: vase4kin
+      changes:
+      - addNotNullConstraint:
+          catalogName: tasks_project  
+          columnDataType: boolean  
+          columnName: non_locked  
+          defaultNullValue: true  
+          schemaName: public  
+          tableName: user  
+          validate: true
+  - include:
+      file: db.changelog-20210928-183932193.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: db.changelog-20210928-191328994.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: db.changelog-20210928-191944492.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: db.changelog-20211004-103811182.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: db.changelog-20211004-132127740.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: db.changelog-20211005-205759302.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: db.changelog-20211006-131505589.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: db.changelog-20211014-214946682.yaml
+      relativeToChangelogFile: true

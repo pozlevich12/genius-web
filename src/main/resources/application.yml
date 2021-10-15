@@ -1,0 +1,48 @@
+spring:
+  thymeleaf:
+    cache: false
+    prefix: classpath:/static/
+  jsf:
+    primefaces: 
+      FONT_AWESOME: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/tasks_project?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: ${DB_USERNAME}
+    password: 
+  liquibase: 
+    enabled: true
+    change-log: classpath:db/db.changelog-master.yaml
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: ${GOOGLE_ID}
+            clientSecret: ${GOOGLE_SECRET}
+          github:
+            clientId: ${GITHUB_ID}
+            client-secret: ${GITHUB_SECRET}
+          azure:
+            provider: azure-ad
+            clientId: ${AZURE_ID}
+            client-secret: ${AZURE_SECRET}
+            authorization-grant-type: authorization_code
+            redirect-uri: '{baseUrl}/login/oauth2/code/{registrationId}'
+            scope: openid, profile, email
+        provider:
+          azure-ad:
+            authorization-uri: https://login.microsoftonline.com/common/oauth2/v2.0/authorize
+            token-uri: https://login.microsoftonline.com/common/oauth2/v2.0/token
+            jwk-set-uri: https://login.microsoftonline.com/common/discovery/v2.0/keys
+task:
+  app:
+    jwtSecret: ${JWT_SECRET.value}
+    jwtExpirationMs: ${JWT_EXPIRATION_MS.value}

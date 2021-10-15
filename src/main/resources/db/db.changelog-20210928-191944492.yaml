@@ -1,0 +1,11 @@
+databaseChangeLog:
+- changeSet:
+    id: 1632856794671-1
+    author: vase4kin (generated)
+    changes:
+    - addNotNullConstraint:
+        columnDataType: varchar(255)
+        columnName: name
+        tableName: role
+        validate: true
+
