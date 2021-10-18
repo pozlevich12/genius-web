@@ -3,7 +3,6 @@ package com.task.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.task.dto.UserProfileDTO;
@@ -12,7 +11,6 @@ import com.task.model.User;
 import com.task.security.service.LoggedUser;
 import com.task.service.UserService;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class AuthController {
 

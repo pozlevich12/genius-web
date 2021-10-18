@@ -7,6 +7,5 @@ import com.task.model.User;
 @Mapper(componentModel = "spring", uses = HelpMapper.class)
 public interface UserProfileDTOMapper {
 
-    
     UserProfileDTO from(User user);
 }

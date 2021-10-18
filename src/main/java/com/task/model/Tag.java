@@ -1,7 +1,6 @@
 package com.task.model;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +31,7 @@ public class Tag {
     @Column(name = "value", nullable = false, unique = true)
     private String value;
 
-    @ManyToMany(mappedBy = "tags")
+    @ManyToMany(mappedBy = "tags", fetch = FetchType.LAZY)
     private Set<Task> tasks = new HashSet<>();
 
 }

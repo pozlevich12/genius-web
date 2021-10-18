@@ -1,15 +1,11 @@
 package com.task.dto.requests;
 
-import java.util.List;
 import java.util.Set;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-
 import com.task.model.Answer;
 import com.task.model.Tag;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
