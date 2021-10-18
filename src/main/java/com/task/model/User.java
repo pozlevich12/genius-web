@@ -16,7 +16,11 @@ import javax.persistence.Index;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import com.task.model.enums.EAuthProvider;
+import com.task.model.enums.ELanguage;
+import com.task.model.enums.EStyle;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -62,12 +66,17 @@ public class User {
     @Column(name = "style")
     private EStyle style = EStyle.DARK;
 
-   
-  
-    
-    
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+    
+    @OneToMany(mappedBy = "user")
+    private Set<Task> tasks = new HashSet<>();
+    
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user")
+    private Set<CurrentRatingOfTask> votes;
+
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user")
+    private Set<UserAnswer> answers;
 
 }

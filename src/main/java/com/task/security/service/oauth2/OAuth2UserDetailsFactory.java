@@ -1,7 +1,8 @@
 package com.task.security.service.oauth2;
 
 import java.util.Map;
-import com.task.model.EAuthProvider;
+
+import com.task.model.enums.EAuthProvider;
 
 public class OAuth2UserDetailsFactory {
 

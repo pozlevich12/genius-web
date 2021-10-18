@@ -2,7 +2,7 @@ package com.task.security.service.oauth2;
 
 import java.util.Map;
 
-import com.task.model.EAuthProvider;
+import com.task.model.enums.EAuthProvider;
 
 public abstract class OAuth2UserInfo {
     protected Map<String, Object> attributes;

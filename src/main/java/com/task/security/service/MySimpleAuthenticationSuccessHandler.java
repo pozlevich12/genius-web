@@ -17,14 +17,14 @@ public class MySimpleAuthenticationSuccessHandler extends SimpleUrlAuthenticatio
     private JwtUtils jwtUtils;
 
     @Value("${URL_REDIRECT_HOME}")
-    private static String URL_REDIRECT_HOME;
-    
+    private String URL_REDIRECT_HOME;
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws IOException, ServletException {
         String jwt = jwtUtils.generateJwtToken(authentication);
-        String determineTargetUrl = UriComponentsBuilder.fromUriString(URL_REDIRECT_HOME).queryParam("JWT", jwt).build()
-                .toUriString();
+        String determineTargetUrl = UriComponentsBuilder.fromUriString(URL_REDIRECT_HOME)
+                .queryParam("JWT", jwt).build().toUriString();
         getRedirectStrategy().sendRedirect(request, response, determineTargetUrl);
     }
 }

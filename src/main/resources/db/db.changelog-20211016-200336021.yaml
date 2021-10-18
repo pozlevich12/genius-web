@@ -1,0 +1,98 @@
+databaseChangeLog:
+- changeSet:
+    id: 1634470492994-1
+    author: vase4kin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: current_rating_of_taskPK
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: value
+            type: INT
+        - column:
+            name: task_id
+            type: BIGINT
+        - column:
+            name: user_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: votes_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: voteList_id
+            type: BIGINT
+        tableName: current_rating_of_task
+- changeSet:
+    id: 1634470492994-2
+    author: vase4kin (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: user_id, task_id
+        constraintName: multipleIndex
+        tableName: current_rating_of_task
+- changeSet:
+    id: 1634470492994-3
+    author: vase4kin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: voteList_id
+        baseTableName: current_rating_of_task
+        constraintName: FK43di6hnv9cxltcv2wq6u0l7e5
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: task
+        validate: true
+- changeSet:
+    id: 1634470492994-4
+    author: vase4kin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: votes_id
+        baseTableName: current_rating_of_task
+        constraintName: FKgnsnjt43shsx39cr3qpi77jpw
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: user
+        validate: true
+- changeSet:
+    id: 1634470492994-5
+    author: vase4kin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: task_id
+        baseTableName: current_rating_of_task
+        constraintName: FKifyynvj7vrmsc8wywggm1pj32
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: task
+        validate: true
+- changeSet:
+    id: 1634470492994-6
+    author: vase4kin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: current_rating_of_task
+        constraintName: FKqf9h0plgrrva77t0q6cyl46j0
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: user
+        validate: true
+

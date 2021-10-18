@@ -7,8 +7,10 @@ import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
-import com.task.model.EAuthProvider;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.task.model.User;
+import com.task.model.enums.EAuthProvider;
 import com.task.repository.UserRepository;
 import com.task.service.RoleService;
 
@@ -22,11 +24,14 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     private RoleService roleService;
 
     @Override
+    @Transactional
     public OAuth2UserDetails loadUser(OAuth2UserRequest oAuth2UserRequest) throws OAuth2AuthenticationException {
         OAuth2User oAuth2User = super.loadUser(oAuth2UserRequest);
-        EAuthProvider authProvider = EAuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getClientName().toUpperCase());
-        OAuth2UserInfo oAuth2UserInfo = OAuth2UserDetailsFactory.getOAuth2UserInfo(authProvider, oAuth2User.getAttributes());
-        
+        EAuthProvider authProvider = EAuthProvider
+                .valueOf(oAuth2UserRequest.getClientRegistration().getClientName().toUpperCase());
+        OAuth2UserInfo oAuth2UserInfo = OAuth2UserDetailsFactory.getOAuth2UserInfo(authProvider,
+                oAuth2User.getAttributes());
+
         User user = userRepository.findByProviderIdAndAuthProvider(oAuth2UserInfo.getProviderId(), authProvider)
                 .orElseGet(() -> {
                     return getNewUser(oAuth2User, authProvider);
@@ -37,7 +42,8 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     public User getNewUser(OAuth2User oAuth2User, EAuthProvider authProvider) {
         User newUser = new User();
-        OAuth2UserInfo custOAuth2User = OAuth2UserDetailsFactory.getOAuth2UserInfo(authProvider, oAuth2User.getAttributes());
+        OAuth2UserInfo custOAuth2User = OAuth2UserDetailsFactory.getOAuth2UserInfo(authProvider,
+                oAuth2User.getAttributes());
         newUser.setProviderId(custOAuth2User.getProviderId());
         newUser.setAuthProvider(custOAuth2User.getAuthProvider());
         newUser.setUsername(custOAuth2User.getName());
@@ -54,4 +60,5 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         user.setLastVisit(LocalDateTime.now());
         return user;
     }
+
 }

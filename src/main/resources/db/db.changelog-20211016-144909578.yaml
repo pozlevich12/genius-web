@@ -1,0 +1,205 @@
+databaseChangeLog:
+- changeSet:
+    id: 1634395761805-1
+    author: vase4kin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: current_rating_of_taskPK
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: value
+            type: INT
+        - column:
+            name: task_id
+            type: BIGINT
+        - column:
+            name: user_id
+            type: BIGINT
+        tableName: current_rating_of_task
+- changeSet:
+    id: 1634395761805-2
+    author: vase4kin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+            name: task_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+            name: tag_id
+            type: BIGINT
+        tableName: tags_by_tasks
+- changeSet:
+    id: 1634395761805-3
+    author: vase4kin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: user_answerPK
+            name: id
+            type: BIGINT
+        - column:
+            name: is_valid
+            type: BIT
+        - column:
+            name: task_id
+            type: BIGINT
+        - column:
+            name: user_id
+            type: BIGINT
+        tableName: user_answer
+- changeSet:
+    id: 1634395761805-4
+    author: vase4kin (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: img_url
+            type: varchar(255)
+        tableName: img
+- changeSet:
+    id: 1634395761805-5
+    author: vase4kin (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: task_id
+            type: bigint
+        tableName: img
+- changeSet:
+    id: 1634395761805-6
+    author: vase4kin (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: user_id, task_id
+        constraintName: multipleIndex
+        tableName: current_rating_of_task
+- changeSet:
+    id: 1634395761805-7
+    author: vase4kin (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: user_id, task_id
+        constraintName: multipleIndex
+        tableName: user_answer
+- changeSet:
+    id: 1634395761805-8
+    author: vase4kin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: tag_id
+        baseTableName: tags_by_tasks
+        constraintName: FK72sfw8g273ax3wyn9cordi3mw
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: tag
+        validate: true
+- changeSet:
+    id: 1634395761805-9
+    author: vase4kin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: user_answer
+        constraintName: FK7kw17ur9w2egkc51xua3yh0ux
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: user
+        validate: true
+- changeSet:
+    id: 1634395761805-10
+    author: vase4kin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: task_id
+        baseTableName: img
+        constraintName: FKbx5i446but8coq61vsjmr9626
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: task
+        validate: true
+- changeSet:
+    id: 1634395761805-11
+    author: vase4kin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: task_id
+        baseTableName: current_rating_of_task
+        constraintName: FKifyynvj7vrmsc8wywggm1pj32
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: task
+        validate: true
+- changeSet:
+    id: 1634395761805-12
+    author: vase4kin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: task_id
+        baseTableName: user_answer
+        constraintName: FKn3i2mn4hyblgvqvgx32vg6ug6
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: task
+        validate: true
+- changeSet:
+    id: 1634395761805-13
+    author: vase4kin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: current_rating_of_task
+        constraintName: FKqf9h0plgrrva77t0q6cyl46j0
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: user
+        validate: true
+- changeSet:
+    id: 1634395761805-14
+    author: vase4kin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: task_id
+        baseTableName: tags_by_tasks
+        constraintName: FKs0uhjn859ufii10l3lp3cgaj8
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: task
+        validate: true
+- changeSet:
+    id: 1634395761805-15
+    author: vase4kin (generated)
+    changes:
+    - dropColumn:
+        columnName: url
+        tableName: img
+

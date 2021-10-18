@@ -6,16 +6,17 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "img")
-public class Img {
+@Table(name = "current_rating_of_task", indexes = {
+        @Index(name = "multipleIndex", columnList = "user_id, task_id", unique = true) })
+public class CurrentRatingOfTask {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,9 +24,13 @@ public class Img {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "task_id")
     private Task task;
 
-    @Column(name = "img_url")
-    private String url;
+    @Column(name = "value", nullable = false)
+    private int value;
 }

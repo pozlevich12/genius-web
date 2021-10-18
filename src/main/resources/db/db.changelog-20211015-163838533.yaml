@@ -1,0 +1,122 @@
+databaseChangeLog:
+- changeSet:
+    id: 1634317031525-1
+    author: vase4kin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: answerPK
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: value
+            type: VARCHAR(255)
+        - column:
+            name: task_id
+            type: BIGINT
+        tableName: answer
+- changeSet:
+    id: 1634317031525-2
+    author: vase4kin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: imgPK
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: url
+            type: VARCHAR(255)
+        tableName: img
+- changeSet:
+    id: 1634317031525-3
+    author: vase4kin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: tagPK
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: value
+            type: VARCHAR(255)
+        tableName: tag
+- changeSet:
+    id: 1634317031525-4
+    author: vase4kin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: taskPK
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: body
+            type: VARCHAR(255)
+        - column:
+            name: createDate
+            type: date
+        - column:
+            name: edit
+            type: BIT
+        - column:
+            constraints:
+              nullable: false
+            name: subject
+            type: INT
+        - column:
+            constraints:
+              nullable: false
+            name: title
+            type: VARCHAR(255)
+        tableName: task
+- changeSet:
+    id: 1634317031525-5
+    author: vase4kin (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: value
+        constraintName: UC_TAGVALUE_COL
+        tableName: tag
+- changeSet:
+    id: 1634317031525-6
+    author: vase4kin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: task_id
+        baseTableName: answer
+        constraintName: FK32s29gitnrc8dhk0m2qf218r3
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: task
+        validate: true
+

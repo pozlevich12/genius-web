@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+
 import com.task.model.User;
 import com.task.security.service.LoggedUser;
 
@@ -28,18 +29,18 @@ public class OAuth2UserDetails implements OAuth2User, LoggedUser {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName().name()))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
     @Override
     public String getName() {
-        return this.user.getUsername();
+        return this.user.getId().toString();
     }
 
     public String getProviderId() {
         return this.oAuth2UserInfo.getProviderId();
     }
-    
+
     @Override
     public User getUser() {
         return this.user;

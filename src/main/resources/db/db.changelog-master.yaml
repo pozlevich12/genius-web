@@ -128,3 +128,24 @@ databaseChangeLog:
   - include:
       file: db.changelog-20211014-214946682.yaml
       relativeToChangelogFile: true
+  - include:
+      file: db.changelog-20211015-163838533.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: db.changelog-20211016-144909578.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: db.changelog-20211016-151721120.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: db.changelog-20211016-163000980.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: db.changelog-20211016-230545038.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: db.changelog-20211016-200336021.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: db.changelog-20211018-081355409.yaml
+      relativeToChangelogFile: true

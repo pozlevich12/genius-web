@@ -1,0 +1,71 @@
+databaseChangeLog:
+- changeSet:
+    id: 1634401826479-2
+    author: vase4kin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: current_rating_of_taskPK
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: value
+            type: INT
+        - column:
+            name: task_id
+            type: BIGINT
+        - column:
+            name: user_id
+            type: BIGINT
+        tableName: current_rating_of_task
+- changeSet:
+    id: 1634401826479-3
+    author: vase4kin (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: user_id, task_id
+        constraintName: multipleIndex
+        tableName: current_rating_of_task
+- changeSet:
+    id: 1634401826479-4
+    author: vase4kin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: task_id
+        baseTableName: current_rating_of_task
+        constraintName: FKifyynvj7vrmsc8wywggm1pj32
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: task
+        validate: true
+- changeSet:
+    id: 1634401826479-5
+    author: vase4kin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: current_rating_of_task
+        constraintName: FKqf9h0plgrrva77t0q6cyl46j0
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: user
+        validate: true
+- changeSet:
+    id: 1634401826479-1
+    author: vase4kin (generated)
+    changes:
+    - addNotNullConstraint:
+        columnDataType: boolean
+        columnName: is_valid
+        tableName: user_answer
+        validate: true
+

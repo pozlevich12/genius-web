@@ -2,8 +2,9 @@ package com.task.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.task.model.ERole;
+
 import com.task.model.Role;
+import com.task.model.enums.ERole;
 import com.task.repository.RoleRepository;
 
 @Service

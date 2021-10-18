@@ -44,5 +44,7 @@ spring:
             jwk-set-uri: https://login.microsoftonline.com/common/discovery/v2.0/keys
 task:
   app:
-    jwtSecret: ${JWT_SECRET.value}
-    jwtExpirationMs: ${JWT_EXPIRATION_MS.value}
+    jwtSecret: ${JWT_SECRET}
+    jwtExpirationMs: ${JWT_EXPIRATION_MS}
+    urlAvatarDefault: ${URL_AVATAR_DEFAULT}
+    urlRedirectHome: ${URL_REDIRECT_HOME}
